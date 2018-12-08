@@ -12,5 +12,13 @@ var connection = mysql.createConnection({
 connection.connect(function(error){
   if(error) throw error;
   console.log("connected at " +connection.threadId+"\n");
-  connection.end()
+  querying()
 })
+
+function querying(){
+  connection.query("SELECT * FROM baes",function(error, results){
+    if (error) throw error;
+    console.log("results:",results);
+    connection.end()
+  })
+}
